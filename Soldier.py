@@ -1,4 +1,5 @@
 from functools import reduce
+from Weapon import Weapon
 
 BASE_SPEED = 50
 BASE_HEALTH = 100
@@ -8,9 +9,10 @@ WEIGHT_CONSTANT = 0.8
 
 class Soldier:
 
-    def __init__(self, inventory, weapons, team):
+    def __init__(self, inventory: dict, weapon: Weapon, team):
+        self._ammo_packs = 0
         self._inventory = inventory
-        self._weapons = weapons
+        self._weapon = weapon
         self._weight = self.new_weight()
         self._health = BASE_HEALTH
         self._speed = self.new_speed()
@@ -68,15 +70,15 @@ class Soldier:
         self._health = new
 
     @property
-    def weapons(self):
+    def weapon(self):
         """
         :return: Armas del soldado (Max 2).
         """
-        return self._weapons
+        return self._weapon
 
-    @weapons.setter
-    def weapons(self, new):
-        self._weapons = new
+    @weapon.setter
+    def weapon(self, new: Weapon):
+        self._weapon = new
 
     @property
     def has_flag(self):
@@ -99,3 +101,20 @@ class Soldier:
     @team.setter
     def team(self, val):
         self._team = val
+
+    @property
+    def ammo_packs(self):
+        return self._ammo_packs
+
+    @ammo_packs.setter
+    def ammo_packs(self, new_amount):
+        self._ammo_packs = new_amount
+
+    def use_item(self, item_name):
+        aux = self.inventory[item_name]
+        new_amount = aux[0] - 1
+        if new_amount == 0:
+            del self.inventory[item_name]
+        else:
+            self.inventory[item_name] = (new_amount, aux[1])
+
