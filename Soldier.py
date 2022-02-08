@@ -10,10 +10,11 @@ WEIGHT_CONSTANT = 0.8
 class Soldier:
 
     def __init__(self, inventory: dict, weapon: Weapon, team):
+        self._weight = 0
         self._ammo_packs = 0
         self._inventory = inventory
         self._weapon = weapon
-        self._weight = self.new_weight()
+        self.weight = self.new_weight()
         self._health = BASE_HEALTH
         self._speed = self.new_speed()
         self._has_flag = False
@@ -31,7 +32,7 @@ class Soldier:
         self._weight = new
 
     def new_weight(self):
-        return self.weight(reduce(lambda x, y: x + y, [v[0] * v[1] for v in self.inventory.values()]))
+        return reduce(lambda x, y: x + y, [v[0] * v[1] for v in self.inventory.values()])
 
     @property
     def speed(self):

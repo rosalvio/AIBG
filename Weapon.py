@@ -5,9 +5,9 @@ class Weapon(ABC):
 
     @property
     @abstractmethod
-    def damage(self):
+    def name(self):
         '''
-        :return: Danyo por disparo del arma.
+        :return: Nombre del arma.
         '''
         pass
 
@@ -28,11 +28,3 @@ class Weapon(ABC):
         pass
 
 
-    @property
-    @abstractmethod
-    def wielding(self):
-        '''
-        Usar armas a una mano reduce la precision
-        :return: Si se necesitan una o dos manos para usar el arma.
-        '''
-        pass
