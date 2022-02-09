@@ -1,6 +1,6 @@
-from Sniper import Sniper
-from AmmoPack import AmmoPack
+from Item import *
 from Soldier import Soldier
+from Weapon import *
 
 a = AmmoPack()
 sn = Sniper()

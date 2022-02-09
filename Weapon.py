@@ -28,3 +28,20 @@ class Weapon(ABC):
         pass
 
 
+class Sniper(Weapon):
+    AMMO = 10
+    RANGE = 50
+
+    def __init__(self):
+        self._name = "Sniper"
+        self._ammo = self.AMMO
+        self._range = self.RANGE
+
+    def name(self):
+        return self._name
+
+    def ammo(self):
+        return self._ammo
+
+    def range(self):
+        return self._range
