@@ -1,12 +1,10 @@
 import pygame
-from Soldier import *
+from Team import *
 
 HEIGHT, WIDTH = 600, 900
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-sniper = Sniper()
-ammo_pack = AmmoPack()
-test_inv = {ammo_pack.name: 3}
-team1 = [Soldier(test_inv, sniper, 1)]
+
+team1 = [Soldier.mock_soldier()]
 
 
 def main():

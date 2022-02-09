@@ -10,6 +10,10 @@ WEIGHT_CONSTANT = 0.8
 
 class Soldier:
 
+    @staticmethod
+    def mock_soldier(team: int):
+        return Soldier({AmmoPack(): 3}, Sniper(), team)
+
     def __init__(self, inventory: dict[Item, int], weapon: Weapon, team: int):
         self._weight = 0
         self._ammo_packs = 0
@@ -20,6 +24,9 @@ class Soldier:
         self._speed = self.new_speed()
         self._has_flag = False
         self._team = team
+        # TODO Anyadir posicion del soldado
+        # TODO Anyadir direccion del soldado
+        # TODO Anyadir id del soldadoz
 
     @property
     def weight(self):
@@ -33,7 +40,8 @@ class Soldier:
         self._weight = new
 
     def new_weight(self):
-        return reduce(lambda x, y: x + y, [k.weight * v for k, v in self.inventory])
+        # TODO Anyadir peso del arma
+        return reduce(lambda x, y: x + y, [k.weight * v for k, v in self.inventory.items()])
 
     @property
     def speed(self):

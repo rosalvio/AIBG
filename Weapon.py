@@ -27,6 +27,8 @@ class Weapon(ABC):
         '''
         pass
 
+    # TODO Anyadir peso del arma
+
 
 class Sniper(Weapon):
     AMMO = 10

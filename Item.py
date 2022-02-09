@@ -1,6 +1,3 @@
-from Soldier import Soldier
-
-
 class Item:
 
     def __init__(self, name, weight):
@@ -16,7 +13,7 @@ class Item:
         return self._weight
 
     @staticmethod
-    def effect(target: Soldier):
+    def effect():
         pass
 
 
@@ -30,5 +27,5 @@ class AmmoPack(Item):
         return super().name
 
     @staticmethod
-    def effect(target: Soldier):
-        target.ammo_packs = target.ammo_packs + 1
+    def effect():
+        return "add_ammo"
