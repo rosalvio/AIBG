@@ -1,15 +1,16 @@
 from functools import reduce
-from Weapon import Weapon
+from Weapon import *
+from Item import *
 
 BASE_SPEED = 50
 BASE_HEALTH = 100
-BASE_INVENTORY = {}  # Los objetos son diccionarios con clave nombre y valor tupla (cantidad, peso)
+BASE_INVENTORY = {}  # Los objetos son diccionarios con clave Item y valor cantidad
 WEIGHT_CONSTANT = 0.8
 
 
 class Soldier:
 
-    def __init__(self, inventory: dict, weapon: Weapon, team):
+    def __init__(self, inventory: dict[Item, int], weapon: Weapon, team: int):
         self._weight = 0
         self._ammo_packs = 0
         self._inventory = inventory
@@ -32,7 +33,7 @@ class Soldier:
         self._weight = new
 
     def new_weight(self):
-        return reduce(lambda x, y: x + y, [v[0] * v[1] for v in self.inventory.values()])
+        return reduce(lambda x, y: x + y, [k.weight * v for k, v in self.inventory])
 
     @property
     def speed(self):
@@ -113,9 +114,9 @@ class Soldier:
 
     def use_item(self, item_name):
         aux = self.inventory[item_name]
-        new_amount = aux[0] - 1
-        if new_amount == 0:
+        aux = aux - 1
+        if aux == 0:
             del self.inventory[item_name]
         else:
-            self.inventory[item_name] = (new_amount, aux[1])
+            self.inventory[item_name] = aux
 

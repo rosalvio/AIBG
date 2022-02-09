@@ -1,14 +1,13 @@
 import pygame
-from Soldier import Soldier
-from Weapon import *
-from Item import *
+from Soldier import *
 
 HEIGHT, WIDTH = 600, 900
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 sniper = Sniper()
 ammo_pack = AmmoPack()
-default_inv = {ammo_pack.name: (1, ammo_pack.weight)}
-team1 = [Soldier()]
+test_inv = {ammo_pack.name: 3}
+team1 = [Soldier(test_inv, sniper, 1)]
+
 
 def main():
     run = True
