@@ -5,7 +5,8 @@ HEIGHT, WIDTH = 600, 900
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("AIBG")
 FLOOR = (209, 196, 75)
-team0 = [Soldier.mock_soldier(0)]
+team0 = Team(0)
+team0.members = [Soldier.mock_soldier(0)]
 
 
 def draw_window():

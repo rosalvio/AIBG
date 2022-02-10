@@ -24,9 +24,17 @@ class Soldier:
         self._speed = self.new_speed()
         self._has_flag = False
         self._team = team
-        # TODO Anyadir posicion del soldado
-        # TODO Anyadir direccion del soldado
-        # TODO Anyadir id del soldadoz
+        self._pos = None
+        # TODO Anyadir destino del soldado
+        # TODO Anyadir id del soldado
+
+    @property
+    def pos(self):
+        return self._pos
+
+    @pos.setter
+    def pos(self, new):
+        self._pos = new
 
     @property
     def weight(self):

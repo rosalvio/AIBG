@@ -1,10 +1,10 @@
-from Item import *
-from Soldier import Soldier
-from Weapon import *
+from Team import *
 
-a = AmmoPack()
-sn = Sniper()
+team0 = Team(0)
+team0.members = [Soldier.mock_soldier(0), Soldier.mock_soldier(0)]
 
-s = Soldier({a: (2, 1)}, sn, 1)
+team0.set_soldiers_spawn()
 
-print(s.speed)
+for soldier in team0.members:
+    print(soldier.pos)
+
