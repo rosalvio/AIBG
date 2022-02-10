@@ -14,7 +14,7 @@ class Team:
         if self.tid == 0:
             return 10, 10
         else:
-            return 590, 890
+            return 540, 840
 
     @property
     def tid(self):
@@ -28,6 +28,7 @@ class Team:
     def members(self, array):
         # TODO Anyadir comprobaciones max soldados y max objetos
         self._members = array
+        self.set_soldiers_spawn()
 
     @property
     def base(self):
@@ -37,7 +38,7 @@ class Team:
         rand = Random()
         used_positions = []
         for soldier in self.members:
-            aux = self.base[0] + rand.randint(0, 5), self.base[1] + rand.randint(0, 5)
+            aux = self.base[0] + rand.randint(0, 50), self.base[1] + rand.randint(0, 50)
             if aux not in used_positions:
                 soldier.pos = aux
                 used_positions.append(aux)
