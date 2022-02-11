@@ -12,9 +12,9 @@ class Team:
 
     def get_base(self):
         if self.tid == 0:
-            return 10, 10
+            return 101, 101
         else:
-            return 540, 840
+            return 1099, 699
 
     @property
     def tid(self):
@@ -38,7 +38,7 @@ class Team:
         rand = Random()
         used_positions = []
         for soldier in self.members:
-            aux = self.base[0] + rand.randint(0, 50), self.base[1] + rand.randint(0, 50)
+            aux = self.base[0] + rand.randint(-100, 100), self.base[1] + rand.randint(-100, 100)
             if aux not in used_positions:
                 soldier.pos = aux
                 used_positions.append(aux)
