@@ -7,12 +7,12 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("AIBG")
 FLOOR = (209, 196, 75)
 RED = (255, 0, 0)
-team0 = Team(0)
+team0: list[Soldier] = Team(0)
 team0.members = [Soldier.mock_soldier(0), Soldier.mock_soldier(0)]
-team1 = Team(1)
+team1: list[Soldier] = Team(1)
 team1.members = [Soldier.mock_soldier(1), Soldier.mock_soldier(1)]
 teams = [team0, team1]
-
+targ = team0.members[0].route((1000, 600))
 
 def draw_soldier(pos: tuple[int, int], color: tuple[int, int, int]):
     aux = pygame.rect.Rect(pos[0] - S_WIDTH/2, pos[1] - S_HEIGHT/2, S_WIDTH, S_HEIGHT)
@@ -28,6 +28,7 @@ def draw_window():
     WIN.fill(FLOOR)
     for team in teams:
         draw_team(team)
+    team0.members[0].goto(targ)
     pygame.display.update()
 
 

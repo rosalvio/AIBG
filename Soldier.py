@@ -2,7 +2,7 @@ from functools import reduce
 from Weapon import *
 from Item import *
 
-BASE_SPEED = 50
+BASE_SPEED = 100
 BASE_HEALTH = 100
 BASE_INVENTORY = {}  # Los objetos son diccionarios con clave Item y valor cantidad
 WEIGHT_CONSTANT = 0.8
@@ -16,7 +16,6 @@ class Soldier:
 
     def __init__(self, inventory: dict[Item, int], weapon: Weapon, team: int):
         self._weight = 0
-        self._ammo_packs = 0
         self._inventory = inventory
         self._weapon = weapon
         self.weight = self.new_weight()
@@ -49,7 +48,7 @@ class Soldier:
 
     def new_weight(self):
         # TODO Anyadir peso del arma
-        return reduce(lambda x, y: x + y, [k.weight * v for k, v in self.inventory.items()])
+        return reduce(lambda x, y: x + y, [k.weight * v for k, v in self.inventory.items()]) + 1
 
     @property
     def speed(self):
@@ -63,7 +62,7 @@ class Soldier:
         self._speed = new
 
     def new_speed(self):
-        return BASE_SPEED - (WEIGHT_CONSTANT * self.weight)
+        return BASE_SPEED / (1 / self.weight)
 
     @property
     def inventory(self):
@@ -120,14 +119,6 @@ class Soldier:
     def team(self, val):
         self._team = val
 
-    @property
-    def ammo_packs(self):
-        return self._ammo_packs
-
-    @ammo_packs.setter
-    def ammo_packs(self, new_amount):
-        self._ammo_packs = new_amount
-
     def use_item(self, item_name):
         aux = self.inventory[item_name]
         aux = aux - 1
@@ -136,3 +127,10 @@ class Soldier:
         else:
             self.inventory[item_name] = aux
 
+    def route(self, target: tuple[int, int]):
+        dx, dy = (target[0] - self.pos[0], target[1] - self.pos[1])
+        stepx, stepy = (int(dx/self.speed), int(dy / self.speed))
+        return stepx, stepy
+
+    def goto(self, step: tuple[int, int]):
+        self.pos = (self.pos[0] + step[0]), self.pos[1] + step[1])
