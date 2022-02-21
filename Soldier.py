@@ -23,8 +23,8 @@ class Soldier:
         self._speed = self.new_speed()
         self._has_flag = False
         self._team = team
-        self._pos = None
-        # TODO Anyadir destino del soldado
+        self._pos = (0, 0)
+        self._destination = self.pos
         # TODO Anyadir id del soldado
 
     @property
@@ -119,6 +119,14 @@ class Soldier:
     def team(self, val):
         self._team = val
 
+    @property
+    def destination(self):
+        return self._destination
+
+    @destination.setter
+    def destination(self, val):
+        self._destination = val
+
     def use_item(self, item_name):
         aux = self.inventory[item_name]
         aux = aux - 1
@@ -127,10 +135,13 @@ class Soldier:
         else:
             self.inventory[item_name] = aux
 
-    def route(self, target: tuple[int, int]):
+    def step(self):
+        target = self.destination
         dx, dy = (target[0] - self.pos[0], target[1] - self.pos[1])
         stepx, stepy = (int(dx/self.speed), int(dy / self.speed))
         return stepx, stepy
 
-    def goto(self, step: tuple[int, int]):
-        self.pos = (self.pos[0] + step[0]), self.pos[1] + step[1])
+    def move(self):
+        step = self.step()
+        if self.pos != self.destination:
+            self.pos = (self.pos[0] + step[0], self.pos[1] + step[1])

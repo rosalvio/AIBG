@@ -41,4 +41,5 @@ class Team:
             aux = self.base[0] + rand.randint(-100, 100), self.base[1] + rand.randint(-100, 100)
             if aux not in used_positions:
                 soldier.pos = aux
+                soldier.destination = aux
                 used_positions.append(aux)
