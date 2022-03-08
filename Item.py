@@ -20,7 +20,7 @@ class Item:
 class AmmoPack(Item):
 
     def __init__(self):
-        super().__init__("AmmoPack", 2)
+        super().__init__("AmmoPack", 0.1)
 
     @property
     def name(self):

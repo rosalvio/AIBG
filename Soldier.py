@@ -2,7 +2,7 @@ from functools import reduce
 from Weapon import *
 from Item import *
 
-BASE_SPEED = 100
+BASE_SPEED = 0.4
 BASE_HEALTH = 100
 BASE_INVENTORY = {}  # Los objetos son diccionarios con clave Item y valor cantidad
 WEIGHT_CONSTANT = 0.8
@@ -48,7 +48,7 @@ class Soldier:
 
     def new_weight(self):
         # TODO Anyadir peso del arma
-        return reduce(lambda x, y: x + y, [k.weight * v for k, v in self.inventory.items()]) + 1
+        return reduce(lambda x, y: x + y, [k.weight * v for k, v in self.inventory.items()])
 
     @property
     def speed(self):
@@ -62,7 +62,7 @@ class Soldier:
         self._speed = new
 
     def new_speed(self):
-        return BASE_SPEED / (1 / self.weight)
+        return max(0, BASE_SPEED - self.weight)
 
     @property
     def inventory(self):
@@ -135,13 +135,8 @@ class Soldier:
         else:
             self.inventory[item_name] = aux
 
-    def step(self):
-        target = self.destination
-        dx, dy = (target[0] - self.pos[0], target[1] - self.pos[1])
-        stepx, stepy = (int(dx/self.speed), int(dy / self.speed))
-        return stepx, stepy
-
     def move(self):
-        step = self.step()
-        if self.pos != self.destination:
-            self.pos = (self.pos[0] + step[0], self.pos[1] + step[1])
+        if round(self.pos[0]) != self.destination[0]:
+            self.pos = (self.pos[0] + self.speed, self.pos[1])
+        if round(self.pos[1]) != self.destination[1]:
+            self.pos = (self.pos[0], self.pos[1] + self.speed)
