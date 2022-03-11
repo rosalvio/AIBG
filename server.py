@@ -4,10 +4,10 @@ import json
 from Soldier import Soldier
 from Team import Team
 from Item import *
+from Weapon import *
 
 app = Flask(__name__)
 api = Api(app)
-
 
 
 class AddSoldier(Resource):
@@ -16,11 +16,27 @@ class AddSoldier(Resource):
         l = request.get_json()
         for soldier in l:
             print(soldier['team'])
-        res = {'team': "done"}
-        return res, 201
+        # TODO Crear objeto Soldier con cada clave del diccionario.
+        return 201
+
+
+class GetFOV(Resource):
+
+    def get(self, soldier_id):
+        # TODO Devolver lista de enemigos visibles.
+        return {'id': soldier_id}, 201
+
+
+class Shoot(Resource):
+
+    def post(self, shooter_id, target_id):
+        # TODO Solo si target esta en la lista del fov de shooter
+        return {'shooter': shooter_id, 'target': target_id}, 201
 
 
 api.add_resource(AddSoldier, '/')
+api.add_resource(GetFOV, '/fov/<int:soldier_id>')
+api.add_resource(Shoot, '/shoot/<int:shooter_id>/<int:target_id>')
 
 
 if __name__ == '__main__':
