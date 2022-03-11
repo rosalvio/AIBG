@@ -47,7 +47,6 @@ class Soldier:
         self._weight = new
 
     def new_weight(self):
-        # TODO Anyadir peso del arma
         return reduce(lambda x, y: x + y, [k.weight * v for k, v in self.inventory.items()])
 
     @property
