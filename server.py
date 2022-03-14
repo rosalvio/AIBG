@@ -1,5 +1,6 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
+# Fuck ngrok, que me pasen el codigo y lo corro yo.
 import json
 from Soldier import Soldier
 from Team import Team
@@ -40,4 +41,4 @@ api.add_resource(Shoot, '/shoot/<int:shooter_id>/<int:target_id>')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
