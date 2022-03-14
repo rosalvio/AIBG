@@ -17,7 +17,13 @@ class AddSoldier(Resource):
         soldiers_list = request.get_json()
         for soldier in soldiers_list:
             print(soldier['team'])
-
+            inv = soldier['inventory']
+            final_inv = dict()
+            for item, amount in inv.items():
+                final_inv[items[item]] = amount
+            print(final_inv)
+            weapon = weapons[soldier['weapon']]
+            print(weapon.name())
         # TODO Crear objeto Soldier con cada clave del diccionario.
         return 201
 
