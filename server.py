@@ -14,9 +14,10 @@ api = Api(app)
 class AddSoldier(Resource):
 
     def post(self):
-        l = request.get_json()
-        for soldier in l:
+        soldiers_list = request.get_json()
+        for soldier in soldiers_list:
             print(soldier['team'])
+
         # TODO Crear objeto Soldier con cada clave del diccionario.
         return 201
 
