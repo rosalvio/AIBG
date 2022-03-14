@@ -31,4 +31,4 @@ class AmmoPack(Item):
         return "add_ammo"
 
 
-items = {'AmmoPack': AmmoPack}
+items = {'AmmoPack': AmmoPack()}

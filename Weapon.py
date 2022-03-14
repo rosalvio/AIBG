@@ -49,4 +49,4 @@ class Sniper(Weapon):
         return self._range
 
 
-weapons = {'Sniper': Sniper}
+weapons = {'Sniper': Sniper()}
