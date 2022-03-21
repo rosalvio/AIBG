@@ -27,6 +27,7 @@ class Soldier:
         self._destination = self.pos
         # TODO Anyadir id del soldado
 
+
     @property
     def pos(self):
         return self._pos
