@@ -1,6 +1,7 @@
 # AIBG
 ## Instalación la primera vez
 **Primero necesito que me paséis vuestros usuarios de GitHub para autorizaros**
+**Hay que instalarse git de [aquí](https://git-scm.com/downloads)**
 ```console
 git config --global user.name "Tu nombre"
 git config --global user.email "tuemail@example.com"
@@ -8,12 +9,12 @@ git config --global user.password "secret"
 git clone https://github.com/rosalvio/AIBG.git
 git checkout -b tu_nombre
 python -m venv venv
-source venv/bin/activate
+venv/bin/activate (si no funciona probad con venv\bin\activate)
 pip install -r requirements.txt
 ```
 
 ## ATENCIÓN
-**CADA VEZ QUE ABRAMOS EL PROYECTO DEBEMO EJECUTAR** *source venv/bin/activate*
+**CADA VEZ QUE ABRAMOS EL PROYECTO DEBEMO EJECUTAR** *venv/bin/activate*
 
 ## Primer push
 ```console
