@@ -143,3 +143,12 @@ class Soldier:
 
     def distance(self, target):
         return sqrt((self.pos[0] - target.pos[0])**2 + (self.pos[1] - self.pos[1])**2)
+
+    def healthbar(self):
+        actual_health = self.health/BASE_HEALTH
+        return actual_health
+    
+    
+
+    
+

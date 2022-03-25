@@ -14,11 +14,15 @@ team1.members = [Soldier.mock_soldier(1), Soldier.mock_soldier(1)]
 teams = [team0, team1]
 team0.members[0].destination = (1000, 500)
 
-
+def draw_healthbar(soldier: Soldier, color: tuple[int, int, int]):
+    aux = pygame.rect.Rect(soldier.pos[0] - S_WIDTH/2, soldier.pos[1] - S_HEIGHT/2 +10, S_WIDTH, S_HEIGHT)
+    pygame.draw.rect(WIN, color, aux)
+    
 def draw_soldier(soldier: Soldier, color: tuple[int, int, int]):
     soldier.move()
     aux = pygame.rect.Rect(soldier.pos[0] - S_WIDTH/2, soldier.pos[1] - S_HEIGHT/2, S_WIDTH, S_HEIGHT)
     pygame.draw.rect(WIN, color, aux)
+    draw_healthbar(soldier, color)
 
 
 def draw_team(team: Team):
@@ -45,3 +49,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
