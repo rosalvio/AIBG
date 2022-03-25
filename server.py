@@ -6,9 +6,11 @@ from Soldier import Soldier
 from Team import Team
 from Item import *
 from Weapon import *
+from game import *
 
 app = Flask(__name__)
 api = Api(app)
+team: list[Soldier] = []
 
 
 class AddSoldier(Resource):
@@ -16,7 +18,7 @@ class AddSoldier(Resource):
     def post(self):
         soldiers_list = request.get_json()
         for soldier in soldiers_list:
-            print(soldier['team'])
+            t = soldier['team']
             inv = soldier['inventory']
             final_inv = dict()
             for item, amount in inv.items():
@@ -24,8 +26,13 @@ class AddSoldier(Resource):
             print(final_inv)
             weapon = weapons[soldier['weapon']]
             print(weapon.name())
-        # TODO Crear objeto Soldier con cada clave del diccionario.
-        return 201
+            team.append(Soldier(final_inv, weapon, soldier['team']))
+
+        if len(team) == 5:
+            team_obj = Team(t)
+            team_obj.members = team
+
+        return {'team': [x.team for x in team]}, 201
 
 
 class GetFOV(Resource):
@@ -48,4 +55,5 @@ api.add_resource(Shoot, '/shoot/<int:shooter_id>/<int:target_id>')
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    # app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
