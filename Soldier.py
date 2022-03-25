@@ -1,6 +1,7 @@
 from functools import reduce
 from Weapon import *
 from Item import *
+from math import sqrt
 
 BASE_SPEED = 0.4
 BASE_HEALTH = 100
@@ -47,7 +48,6 @@ class Soldier:
         self._weight = new
 
     def new_weight(self):
-        # TODO Anyadir peso del arma
         return reduce(lambda x, y: x + y, [k.weight * v for k, v in self.inventory.items()])
 
     @property
@@ -140,3 +140,6 @@ class Soldier:
             self.pos = (self.pos[0] + self.speed, self.pos[1])
         if round(self.pos[1]) != self.destination[1]:
             self.pos = (self.pos[0], self.pos[1] + self.speed)
+
+    def distance(self, target):
+        return sqrt((self.pos[0] - target.pos[0])**2 + (self.pos[1] - self.pos[1])**2)

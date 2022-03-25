@@ -29,3 +29,6 @@ class AmmoPack(Item):
     @staticmethod
     def effect():
         return "add_ammo"
+
+
+items = {'AmmoPack': AmmoPack()}

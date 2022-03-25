@@ -47,3 +47,6 @@ class Sniper(Weapon):
 
     def range(self):
         return self._range
+
+
+weapons = {'Sniper': Sniper()}
