@@ -31,4 +31,18 @@ class AmmoPack(Item):
         return "add_ammo"
 
 
-items = {'AmmoPack': AmmoPack()}
+class HealthUp(Item):
+
+    def __init__(self):
+        super().__init__("HealthUp", 0.1)
+
+    @property
+    def name(self):
+        return super().name
+
+    @staticmethod
+    def effect():
+        return "add_health"
+
+
+items = {'AmmoPack': AmmoPack(), 'HealthUp': HealthUp()}

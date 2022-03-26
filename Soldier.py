@@ -134,6 +134,10 @@ class Soldier:
             del self.inventory[item_name]
         else:
             self.inventory[item_name] = aux
+            if item_name == "HealthUp":
+                self.health += 50
+                if self.healt > 100:
+                    self.health = 100
 
     def move(self):
         if round(self.pos[0]) != self.destination[0]:
